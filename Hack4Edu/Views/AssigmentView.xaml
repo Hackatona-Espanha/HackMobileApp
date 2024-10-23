@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Hack4Edu.Views.AssigmentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="AssigmentView">
+    <Grid BackgroundColor="#0D0118" RowDefinitions=".12*, *">
+        <Label
+            Margin="0,20,0,0"
+            FontSize="16"
+            HorizontalOptions="Center"
+            Text="{Binding AssigmentName}"
+            TextColor="White"
+            VerticalOptions="Start" />
+
+        <CollectionView
+            x:Name="AssignmentCollection"
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            ItemsSource="{Binding AIGeneratedWorks}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    ItemSpacing="0"
+                    Orientation="Vertical"
+                    SnapPointsAlignment="Center"
+                    SnapPointsType="MandatorySingle" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        HeightRequest="255"
+                        RowDefinitions="Auto, *"
+                        WidthRequest="400">
+                        <Image Aspect="AspectFill" Source="{Binding ImageBase64}" />
+
+                        <Label
+                            Grid.Row="1"
+                            Margin="0,10,0,0"
+                            FontSize="15"
+                            HorizontalOptions="Center"
+                            Text="{Binding Text}"
+                            TextColor="White"
+                            VerticalOptions="Start" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

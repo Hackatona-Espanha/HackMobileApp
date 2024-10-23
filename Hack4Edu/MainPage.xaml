@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Hack4Edu.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid BackgroundColor="#0D0118" RowDefinitions=".0*, .08*, .45*, .05*, .05*,.3*">
+
+
+        <Grid Grid.Row="1" Margin="25,25,25,0">
+            <RoundRectangle
+                CornerRadius="25"
+                Fill="#311B45"
+                HeightRequest="20" />
+            <SearchBar
+                CancelButtonColor="White"
+                Placeholder="placeholder"
+                PlaceholderColor="#AC9DB9"
+                TextColor="White"
+                VerticalOptions="Center" />
+        </Grid>
+
+        <CarouselView
+            Grid.Row="2"
+            IndicatorView="IndicationView"
+            ItemsSource="{Binding Subjects}"
+            PeekAreaInsets="30">
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout
+                    ItemSpacing="0"
+                    Orientation="Horizontal"
+                    SnapPointsAlignment="Center"
+                    SnapPointsType="MandatorySingle" />
+            </CarouselView.ItemsLayout>
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped" />
+                        </Grid.GestureRecognizers>
+                        <Border
+                            Grid.RowSpan="3"
+                            BackgroundColor="#311B45"
+                            HeightRequest="300"
+                            Stroke="#6E5575"
+                            StrokeShape="RoundRectangle 30,30,30,30"
+                            StrokeThickness="2"
+                            WidthRequest="300">
+                            <Grid RowDefinitions=".2*, .6*, .2*">
+                                <Image
+                                    Grid.RowSpan="3"
+                                    Aspect="AspectFill"
+                                    Source="{Binding Image}" />
+
+                                <RoundRectangle
+                                    Grid.RowSpan="3"
+                                    CornerRadius="30"
+                                    HeightRequest="300"
+                                    Opacity=".7"
+                                    WidthRequest="300">
+                                    <RoundRectangle.Fill>
+                                        <LinearGradientBrush EndPoint="0,1">
+                                            <GradientStop Offset="0" Color="Transparent" />
+                                            <GradientStop Offset="1" Color="#030005" />
+                                        </LinearGradientBrush>
+                                    </RoundRectangle.Fill>
+                                </RoundRectangle>
+
+                                <VerticalStackLayout Grid.Row="2" Margin="20,0,0,0">
+                                    <Label
+                                        FontSize="Large"
+                                        Text="{Binding Name}"
+                                        TextColor="White" />
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="#C283FD"
+                                    Opacity=".7"
+                                    Radius="100"
+                                    Offset="0,0" />
+                            </Border.Shadow>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+
+        </CarouselView>
+        <IndicatorView
+            x:Name="IndicationView"
+            Grid.Row="3"
+            HorizontalOptions="Center"
+            IndicatorSize="8"
+            SelectedIndicatorColor="White"
+            VerticalOptions="Center" />
+
+        <Label
+            Grid.Row="4"
+            Margin="25,10,25,10"
+            FontSize="16"
+            Text="Remaining assignments"
+            TextColor="White"
+            VerticalOptions="Center" />
+
+        <CollectionView Grid.Row="5" ItemsSource="{Binding RemainingAssignments}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="25" Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        x:Name="RemainingAssigmentsGrid"
+                        HeightRequest="200"
+                        WidthRequest="200">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="RemainingAssigmentsGrid_Tapped" />
+                        </Grid.GestureRecognizers>
+                        <Border
+                            HeightRequest="200"
+                            HorizontalOptions="Center"
+                            Stroke="#6E557C"
+                            StrokeShape="RoundRectangle 20,20,20,20"
+                            StrokeThickness="2"
+                            WidthRequest="200">
+                            <Image Aspect="AspectFill" Source="{Binding AssignmentImage}" />
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
