@@ -1,6 +1,4 @@
-﻿using Hack4Edu.Views;
-
-namespace Hack4Edu
+﻿namespace Hack4Edu
 {
     public partial class App : Application
     {
@@ -8,7 +6,7 @@ namespace Hack4Edu
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new CreateAccountView());
+            MainPage = new NavigationPage(new MainPage());
         }
 
 
