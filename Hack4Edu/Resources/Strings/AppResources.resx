@@ -198,4 +198,7 @@
   <data name="GeoAssignment1" xml:space="preserve">
     <value>Introduction to Relief</value>
   </data>
+  <data name="RemainingAssignmentsText" xml:space="preserve">
+    <value>Remaining Assignments</value>
+  </data>
 </root>

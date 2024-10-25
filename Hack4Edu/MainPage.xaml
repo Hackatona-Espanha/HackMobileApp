@@ -3,20 +3,30 @@
     x:Class="Hack4Edu.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resource="clr-namespace:Hack4Edu.Common"
     NavigationPage.HasNavigationBar="False">
 
-    <Grid BackgroundColor="#0D0118" RowDefinitions=".0*, .08*, .45*, .05*, .05*,.3*">
+    <Grid BackgroundColor="#0D0118" RowDefinitions=".0*, .12*, .45*, .05*, .05*,.3*">
 
 
-        <Grid Grid.Row="1" Margin="25,25,25,0">
-            <RoundRectangle
-                CornerRadius="25"
-                Fill="#311B45"
-                HeightRequest="20" />
-            <SearchBar
-                CancelButtonColor="White"
-                Placeholder="placeholder"
-                PlaceholderColor="#AC9DB9"
+        <Grid
+            Grid.Row="1"
+            Padding="0,0,0,0"
+            ColumnDefinitions="*,*"
+            HorizontalOptions="Center">
+            <Image
+                Margin="-50,50,0,0"
+                HeightRequest="150"
+                HorizontalOptions="Center"
+                Source="logo.png"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Column="1"
+                Margin="-30,20,0,0"
+                FontFamily="passion"
+                FontSize="30"
+                HorizontalOptions="Start"
+                Text="BrainBuddy"
                 TextColor="White"
                 VerticalOptions="Center" />
         </Grid>
@@ -99,7 +109,7 @@
             Grid.Row="4"
             Margin="25,10,25,10"
             FontSize="16"
-            Text="Remaining assignments"
+            Text="{resource:Translate RemainingAssignmentsText}"
             TextColor="White"
             VerticalOptions="Center" />
 

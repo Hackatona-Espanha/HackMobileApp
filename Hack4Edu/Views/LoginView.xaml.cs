@@ -1,25 +1,28 @@
 using Hack4Edu.Common;
 using Hack4Edu.Models;
+using Plugin.Maui.Audio;
 using System.Text.Json;
 
 namespace Hack4Edu.Views;
 
 public partial class LoginView : ContentPage
 {
+    private readonly IAudioManager _audioManager;
     private string dbPath;
     public LocalizationResourceManager LocalizationResourceManager => LocalizationResourceManager.Instance;
 
-    public LoginView()
+    public LoginView(IAudioManager audioManager)
     {
         InitializeComponent();
 
         string appDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         dbPath = Path.Combine(appDataDirectory, "Users.json");
+        this._audioManager = audioManager;
     }
 
     private async void CreateAccount_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new CreateAccountView());
+        await Navigation.PushAsync(new CreateAccountView(_audioManager));
     }
 
     private async void LoginButton_Clicked(object sender, EventArgs e)
@@ -43,7 +46,7 @@ public partial class LoginView : ContentPage
 
             if (loginUser != null)
             {
-                await Navigation.PushAsync(new MainPage());
+                await Navigation.PushAsync(new MainPage(_audioManager));
             }
             else
             {

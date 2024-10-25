@@ -295,6 +295,15 @@ namespace Hack4Edu.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remaining Assignments.
+        /// </summary>
+        internal static string RemainingAssignmentsText {
+            get {
+                return ResourceManager.GetString("RemainingAssignmentsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome!.
         /// </summary>
         internal static string WelcomeText {

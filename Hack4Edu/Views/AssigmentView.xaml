@@ -3,8 +3,10 @@
     x:Class="Hack4Edu.Views.AssigmentView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="AssigmentView">
-    <Grid BackgroundColor="#0D0118" RowDefinitions=".12*, *">
+    Title="AssigmentView"
+    NavigationPage.HasBackButton="True"
+    NavigationPage.HasNavigationBar="False">
+    <Grid BackgroundColor="#0D0118" RowDefinitions=".08*, .8*, .10*">
         <Label
             Margin="0,20,0,0"
             FontSize="16"
@@ -12,5 +14,81 @@
             Text="{Binding AssignmentName}"
             TextColor="White"
             VerticalOptions="Start" />
+
+        <CarouselView
+            x:Name="AssignmentCarousel"
+            Grid.Row="1"
+            IndicatorView="IndicationView"
+            ItemsSource="{Binding AIGeneratedWorks}"
+            VerticalOptions="Start">
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout
+                    ItemSpacing="0"
+                    Orientation="Horizontal"
+                    SnapPointsAlignment="Center"
+                    SnapPointsType="MandatorySingle" />
+            </CarouselView.ItemsLayout>
+
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions="Auto,Auto">
+                        <Border
+                            BackgroundColor="#311B45"
+                            HeightRequest="300"
+                            Stroke="#6E5575"
+                            StrokeShape="RoundRectangle 30,30,30,30"
+                            StrokeThickness="2"
+                            WidthRequest="360">
+                            <Grid RowDefinitions=".2*, .6*">
+                                <Image
+                                    Grid.RowSpan="3"
+                                    Aspect="AspectFill"
+                                    Source="{Binding Image}" />
+                            </Grid>
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="#C283FD"
+                                    Opacity=".7"
+                                    Radius="100"
+                                    Offset="0,0" />
+                            </Border.Shadow>
+                        </Border>
+                        <Label
+                            Grid.Row="1"
+                            FontFamily="latobold"
+                            FontSize="15"
+                            Text="{Binding Text}"
+                            TextColor="White"
+                            WidthRequest="340" />
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <Grid
+            Grid.Row="2"
+            ColumnDefinitions="*,*"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="300">
+            <IndicatorView
+                x:Name="IndicationView"
+                Grid.RowSpan="2"
+                Margin="0,0,-150,0"
+                HorizontalOptions="Center"
+                IndicatorSize="8"
+                SelectedIndicatorColor="White"
+                VerticalOptions="Center" />
+            <Button
+                x:Name="AudioButton"
+                Grid.Column="1"
+                Margin="0,0,-30,10"
+                Clicked="AudioButton_Clicked"
+                HeightRequest="40"
+                HorizontalOptions="End"
+                ImageSource="audio.png"
+                VerticalOptions="Center"
+                WidthRequest="80" />
+        </Grid>
     </Grid>
 </ContentPage>

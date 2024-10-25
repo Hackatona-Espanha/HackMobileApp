@@ -1,13 +1,17 @@
 using Hack4Edu.Models;
+using Plugin.Maui.Audio;
 
 namespace Hack4Edu.Views;
 
 public partial class SubjectView : ContentPage
 {
-    public SubjectView(SubjectsModel model)
+    private readonly IAudioManager _audioManager;
+
+    public SubjectView(SubjectsModel model, IAudioManager audioManager)
     {
         InitializeComponent();
         BindingContext = model;
+        this._audioManager = audioManager;
     }
 
     private async void RemainingAssignment_Tapped(object sender, TappedEventArgs e)
@@ -18,7 +22,7 @@ public partial class SubjectView : ContentPage
         if (item != null)
         {
             // Navegar para a nova página  
-            await Navigation.PushAsync(new AssigmentView(item));
+            await Navigation.PushAsync(new AssigmentView(item, _audioManager));
         }
     }
 }

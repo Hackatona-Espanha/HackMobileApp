@@ -1,12 +1,16 @@
-﻿namespace Hack4Edu
+﻿using Plugin.Maui.Audio;
+
+namespace Hack4Edu
 {
     public partial class App : Application
     {
-        public App()
+        private readonly IAudioManager _audioManager;
+        public App(IAudioManager audioManager)
         {
             InitializeComponent();
+            this._audioManager = audioManager;
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage(_audioManager));
         }
 
 
